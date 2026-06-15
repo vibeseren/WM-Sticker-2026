@@ -161,6 +161,7 @@ const FIREBASE_CONFIG = {
 
 // Alle 48 WM 2026 Teams in korrekter Album-Reihenfolge
 const TEAMS=[
+  {name:"Spezial", flag:"⭐", count:19, labels:["00","FWC1","FWC2","FWC3","FWC4","FWC5","FWC6","FWC7","FWC8","FWC9","FWC10","FWC11","FWC12","FWC13","FWC14","FWC15","FWC16","FWC17","FWC18"]},
   {name:"Mexiko",              flag:"🇲🇽", count:20},
   {name:"Südafrika",           flag:"🇿🇦", count:20},
   {name:"Südkorea",            flag:"🇰🇷", count:20},
@@ -209,8 +210,6 @@ const TEAMS=[
   {name:"Kroatien",            flag:"🇭🇷", count:20},
   {name:"Ghana",               flag:"🇬🇭", count:20},
   {name:"Panama",              flag:"🇵🇦", count:20},
-  // Specials
-  {name:"Starter/Specials",    flag:"⭐", count:20},
 ];
 
 const TOTAL=TEAMS.reduce((a,t)=>a+t.count,0);
@@ -356,7 +355,7 @@ function buildTeam(ti,team){
     const key=getKey(ti,s);
     const div=document.createElement('div');
     div.id='el_'+key; div.className='sticker';
-    div.textContent=s+1;
+    div.textContent=team.labels ? team.labels[s] : s+1;
     applyClass(div,stickersState[key]||0);
     div.onclick=()=>cycleSticker(key);
     grid.appendChild(div);
